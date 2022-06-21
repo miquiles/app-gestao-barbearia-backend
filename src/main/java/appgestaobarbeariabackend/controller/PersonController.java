@@ -30,9 +30,9 @@ public class PersonController {
 
     }
     @GetMapping("fetch-client/{document}")
-    public ResponseEntity findClient(@PathVariable String document){
+    public ResponseEntity findClient(@PathVariable String cpf){
         try {
-            return new ResponseEntity(this.clientService.findClientByDocument(document), HttpStatus.CONTINUE);
+            return new ResponseEntity(this.clientService.findClientByDocument(cpf), HttpStatus.CONTINUE);
         }catch (Exception e){
             e.printStackTrace();
             return new ResponseEntity(HttpStatus.NOT_FOUND);
