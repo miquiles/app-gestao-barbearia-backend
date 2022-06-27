@@ -4,8 +4,6 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.List;
 
 @Getter
 @Setter
@@ -13,7 +11,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Client {
+public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,9 +25,9 @@ public class Client {
     @Column(length = 11, nullable = false)
     private String document;
     @Column(length = 3, nullable = false)
-    private int ddd;
+    private String ddd;
     @Column(length = 10, nullable = false)
-    private int numberPhone;
+    private String numberPhone;
     @Column(length = 50)
     private String mail;
 
