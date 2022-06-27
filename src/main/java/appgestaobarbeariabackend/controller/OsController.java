@@ -1,10 +1,6 @@
 package appgestaobarbeariabackend.controller;
 
-import appgestaobarbeariabackend.model.Client;
-import appgestaobarbeariabackend.model.Product;
 import appgestaobarbeariabackend.model.ServiceOrder;
-import appgestaobarbeariabackend.model.enuns.PaymentsEnum;
-import appgestaobarbeariabackend.model.enuns.PaymentsStatus;
 import appgestaobarbeariabackend.service.OSService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

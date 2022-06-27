@@ -1,8 +1,8 @@
 package appgestaobarbeariabackend.model.dto;
 
-import appgestaobarbeariabackend.model.Client;
+import appgestaobarbeariabackend.model.Person;
 
 public class ServiceOrderDto {
 
-    private Client client;
+    private Person person;
 }

@@ -1,14 +1,15 @@
 package appgestaobarbeariabackend.controller;
 
-import appgestaobarbeariabackend.model.Client;
-import appgestaobarbeariabackend.repository.ClientRepository;
-import appgestaobarbeariabackend.service.ClientService;
+import appgestaobarbeariabackend.model.Person;
+import appgestaobarbeariabackend.model.dto.PersonDto;
+import appgestaobarbeariabackend.repository.PersonRepository;
+import appgestaobarbeariabackend.service.PersonService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.validation.Valid;
 
 @RestController
 @AllArgsConstructor
@@ -16,36 +17,43 @@ import java.util.List;
 @RequestMapping("person")
 public class PersonController {
 
-    private ClientRepository clientRepository;
-    private final ClientService clientService;
+    private PersonRepository personRepository;
+    private final PersonService personService;
+
+    @GetMapping("list-clients")
+    public ResponseEntity findAllPersons() {
+        return new ResponseEntity(this.personService.findAllPersons(), HttpStatus.OK);
+    }
+
+
+    @GetMapping("fetch-client/{document}")
+    public ResponseEntity<Person> findClientDocument(@PathVariable String document) {
+        var client = personService.findClientByDocument(document);
+        return ResponseEntity.ok().body(client);
+
+    }
 
     @PostMapping("register")
-    public ResponseEntity create(@RequestBody Client client){
+    public ResponseEntity create(@Valid @RequestBody PersonDto personDto) {
         try {
-            return new ResponseEntity(this.clientService.saveClient(client), HttpStatus.CREATED);
-        }catch (Exception e){
+            return new ResponseEntity(this.personService.saveClient(personDto), HttpStatus.CREATED);
+        } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity(HttpStatus.CONFLICT);
         }
 
     }
-    @GetMapping("fetch-client/{document}")
-    public ResponseEntity findClient(@PathVariable String cpf){
-        try {
-            return new ResponseEntity(this.clientService.findClientByDocument(cpf), HttpStatus.CONTINUE);
-        }catch (Exception e){
-            e.printStackTrace();
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
-        }
+
+    @PutMapping("/edit/{document}")
+    public ResponseEntity<Void> replace(@PathVariable String document, @RequestBody PersonDto personDto) {
+        personService.replace(personDto, document);
+        return new ResponseEntity<>(HttpStatus.OK);
+
     }
 
-    @GetMapping("list-clients")
-    public ResponseEntity findAllClients(){
-       return new ResponseEntity(this.clientRepository.findAll(), HttpStatus.OK);
+    @DeleteMapping("/remove/{document}")
+    public ResponseEntity<Void> delete(@PathVariable String document) {
+        personService.delete(document);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
-
-
-
 }
