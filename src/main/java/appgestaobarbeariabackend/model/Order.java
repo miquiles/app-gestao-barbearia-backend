@@ -1,7 +1,5 @@
 package appgestaobarbeariabackend.model;
 
-import appgestaobarbeariabackend.model.enuns.PaymentsEnum;
-import appgestaobarbeariabackend.model.enuns.PaymentsStatus;
 import lombok.*;
 
 import javax.persistence.*;
@@ -15,7 +13,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class ServiceOrder {
+@Table( name = "OS")
+public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +22,6 @@ public class ServiceOrder {
     private LocalDate osDate;
     private String paymentType;
     private String paymentsStatus;
-    private String clientName;
     private String clientDocument;
     private UUID osRegisterNumber;
 
