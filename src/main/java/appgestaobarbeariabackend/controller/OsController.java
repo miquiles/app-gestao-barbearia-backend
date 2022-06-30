@@ -1,6 +1,5 @@
 package appgestaobarbeariabackend.controller;
 
-import appgestaobarbeariabackend.model.Order;
 import appgestaobarbeariabackend.model.dto.OrderDto;
 import appgestaobarbeariabackend.service.OSService;
 import lombok.AllArgsConstructor;

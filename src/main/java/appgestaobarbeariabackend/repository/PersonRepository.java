@@ -13,7 +13,7 @@ import java.util.Optional;
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Long> {
 
-    Optional<Person> findByDocument(String document);
+    Optional<Person> findByPersonDocument(String document);
 
     @Modifying
     @Query(nativeQuery = true, value = "update Person set firstName = :firstName, secondName = :secondName, " +

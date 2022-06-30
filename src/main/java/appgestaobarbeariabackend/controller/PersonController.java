@@ -2,7 +2,6 @@ package appgestaobarbeariabackend.controller;
 
 import appgestaobarbeariabackend.model.Person;
 import appgestaobarbeariabackend.model.dto.PersonDto;
-import appgestaobarbeariabackend.repository.PersonRepository;
 import appgestaobarbeariabackend.service.PersonService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,7 +16,7 @@ import javax.validation.Valid;
 @RequestMapping("person")
 public class PersonController {
 
-    private PersonRepository personRepository;
+
     private final PersonService personService;
 
     @GetMapping("list-clients")
@@ -45,7 +44,7 @@ public class PersonController {
     }
 
     @PutMapping("/edit/{document}")
-    public ResponseEntity<Void> replace(@PathVariable String document, @RequestBody PersonDto personDto) {
+    public ResponseEntity<Void> replace(@Valid @PathVariable String document, @RequestBody PersonDto personDto) {
         personService.replace(personDto, document);
         return new ResponseEntity<>(HttpStatus.OK);
 

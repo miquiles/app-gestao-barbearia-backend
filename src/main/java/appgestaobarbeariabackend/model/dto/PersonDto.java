@@ -21,7 +21,7 @@ public class PersonDto {
 
     @NotEmpty(message = "Document field is required")
     @NotNull(message = "Document field cannot be null")
-    private String document;
+    private String personDocument;
 
     @NotEmpty(message = "DDD field is required")
     @NotNull(message = "DDD field cannot be null")
