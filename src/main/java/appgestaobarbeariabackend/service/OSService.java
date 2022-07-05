@@ -3,6 +3,7 @@ package appgestaobarbeariabackend.service;
 import appgestaobarbeariabackend.exception.BadRequestException;
 import appgestaobarbeariabackend.model.Order;
 import appgestaobarbeariabackend.model.dto.OrderDto;
+import appgestaobarbeariabackend.repository.EmployeeRepository;
 import appgestaobarbeariabackend.repository.OsRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
@@ -18,16 +19,20 @@ import java.util.UUID;
 public class OSService {
 
     private OsRepository osRepository;
+    private EmployeeRepository employeeRepository;
 
     public Order orderSave(OrderDto orderDto){
 
+        var employee = employeeRepository.findByEmployeeDocument(orderDto.getEmployeeDocument());
         var orderBuild = Order.builder()
                 .osDate(LocalDate.now())
                 .osRegisterNumber(UUID.randomUUID())
-                .clientDocument(orderDto.getDocument())
+                .personDocument(orderDto.getPersonDocument())
                 .paymentsStatus(orderDto.getPaymentsStatus())
                 .paymentType(orderDto.getPaymentType())
                 .productList(orderDto.getProducts())
+                .osTotalValue(orderDto.getTotalValue())
+                .employee(employee.get())
                 .build();
 
         return osRepository.save(orderBuild);

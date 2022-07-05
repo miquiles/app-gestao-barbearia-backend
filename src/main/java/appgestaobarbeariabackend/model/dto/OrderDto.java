@@ -9,8 +9,9 @@ import java.util.List;
 public class OrderDto {
 
     // client
-    private String document;
-
+    private String personDocument;
+    // total Value
+    private Double totalValue;
     // produto
     private List<Product> products;
 
@@ -18,6 +19,7 @@ public class OrderDto {
     private String paymentType;
     private String paymentsStatus;
 
-
+    //Employee
+    private String employeeDocument;
 
 }

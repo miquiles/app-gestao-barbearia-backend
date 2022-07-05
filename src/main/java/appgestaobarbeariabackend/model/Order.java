@@ -22,11 +22,14 @@ public class Order {
     private LocalDate osDate;
     private String paymentType;
     private String paymentsStatus;
-    private String clientDocument;
+    private String personDocument;
     private UUID osRegisterNumber;
+    private Double osTotalValue;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Product> productList;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Employee employee;
 
 }

@@ -23,7 +23,7 @@ public class Person {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String bornDate;
     @Column(length = 11, nullable = false)
-    private String document;
+    private String personDocument;
     @Column(length = 3, nullable = false)
     private String ddd;
     @Column(length = 10, nullable = false)

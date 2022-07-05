@@ -21,13 +21,13 @@ public class PersonService {
     }
 
     public Person saveClient(PersonDto personDto) throws Exception {
-        var clientExists = personRepository.findByDocument(personDto.getDocument()).isEmpty();
+        var clientExists = personRepository.findByPersonDocument(personDto.getPersonDocument()).isEmpty();
         if (clientExists) {
             Person person = Person.builder()
                     .firstName(personDto.getFirstName())
                     .secondName(personDto.getSecondName())
                     .bornDate(personDto.getBornDate())
-                    .document(personDto.getDocument())
+                    .personDocument(personDto.getPersonDocument())
                     .ddd(personDto.getDdd())
                     .numberPhone(personDto.getNumberPhone())
                     .mail(personDto.getMail())
@@ -39,7 +39,7 @@ public class PersonService {
     }
 
     public Person findClientByDocument(String document) {
-        return personRepository.findByDocument(document).orElseThrow(() -> new BadRequestException("Object not found! DOCUMENT: "
+        return personRepository.findByPersonDocument(document).orElseThrow(() -> new BadRequestException("Object not found! DOCUMENT: "
                 + document + ", Tipo: " + PersonService.class.getName()));
     }
 
@@ -50,7 +50,7 @@ public class PersonService {
                 .firstName(personDto.getFirstName())
                 .secondName(personDto.getSecondName())
                 .bornDate(personDto.getBornDate())
-                .document(personDto.getDocument())
+                .personDocument(personDto.getPersonDocument())
                 .ddd(personDto.getDdd())
                 .numberPhone(personDto.getNumberPhone())
                 .mail(personDto.getMail())
